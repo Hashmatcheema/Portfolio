@@ -1,68 +1,71 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Text, Float } from "@react-three/drei";
-import * as THREE from "three";
+import { useEffect, useRef } from 'react';
 
-function Cube() {
-  const meshRef = useRef<THREE.Mesh>(null);
+const SimpleTechCube = () => {
+  const cubeRef = useRef<HTMLDivElement>(null);
 
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += 0.003;
-      meshRef.current.rotation.y += 0.005;
-    }
-  });
+  useEffect(() => {
+    const cube = cubeRef.current;
+    if (!cube) return;
 
-  const techLogos = [
-    { text: "REACT", position: [0, 0, 1.01] as [number, number, number], rotation: [0, 0, 0] as [number, number, number] },
-    { text: "NEXT.JS", position: [0, 0, -1.01] as [number, number, number], rotation: [0, Math.PI, 0] as [number, number, number] },
-    { text: "NODE", position: [1.01, 0, 0] as [number, number, number], rotation: [0, Math.PI / 2, 0] as [number, number, number] },
-    { text: "PYTHON", position: [-1.01, 0, 0] as [number, number, number], rotation: [0, -Math.PI / 2, 0] as [number, number, number] },
-    { text: "TS", position: [0, 1.01, 0] as [number, number, number], rotation: [-Math.PI / 2, 0, 0] as [number, number, number] },
-    { text: "MONGO", position: [0, -1.01, 0] as [number, number, number], rotation: [Math.PI / 2, 0, 0] as [number, number, number] },
+    let animationId: number;
+    let rotation = { x: 0, y: 0 };
+
+    const animate = () => {
+      rotation.x += 0.3;
+      rotation.y += 0.5;
+      
+      if (cube) {
+        cube.style.transform = `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`;
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
+
+  const faces = [
+    { text: 'REACT', transform: 'translateZ(100px)' },
+    { text: 'NEXT.JS', transform: 'rotateY(180deg) translateZ(100px)' },
+    { text: 'NODE', transform: 'rotateY(90deg) translateZ(100px)' },
+    { text: 'PYTHON', transform: 'rotateY(-90deg) translateZ(100px)' },
+    { text: 'TS', transform: 'rotateX(90deg) translateZ(100px)' },
+    { text: 'MONGO', transform: 'rotateX(-90deg) translateZ(100px)' },
   ];
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh ref={meshRef}>
-        <boxGeometry args={[2, 2, 2]} />
-        <meshStandardMaterial
-          color="#ec4e39"
-          wireframe={false}
-          opacity={0.9}
-          transparent
-          metalness={0.5}
-          roughness={0.2}
-        />
-        {techLogos.map((logo, index) => (
-          <Text
+    <div className="flex items-center justify-center h-full perspective-1000">
+      <div 
+        ref={cubeRef}
+        className="relative w-48 h-48 transform-style-3d transition-transform duration-100"
+      >
+        {faces.map((face, index) => (
+          <div
             key={index}
-            position={logo.position}
-            rotation={logo.rotation}
-            fontSize={0.22}
-            color="#ffffff"
-            anchorX="center"
-            anchorY="middle"
+            className="absolute w-full h-full bg-[#ec4e39]/80 border-2 border-[#ec4e39] flex items-center justify-center text-white text-lg font-bold rounded-lg"
+            style={{ transform: face.transform }}
           >
-            {logo.text}
-          </Text>
+            {face.text}
+          </div>
         ))}
-      </mesh>
-    </Float>
-  );
-}
+      </div>
 
-const TechCube = () => {
-  return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} />
-      <Cube />
-    </Canvas>
+      <style jsx>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+      `}</style>
+    </div>
   );
 };
 
-export default TechCube;
+export default SimpleTechCube;
