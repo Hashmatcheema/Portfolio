@@ -14,7 +14,7 @@ function Navigation() {
       setIsScrolled(window.scrollY > 50);
       
       // Find which section is currently in view
-      const sections = ["about", "skills", "projects", "testimonials", "contact"];
+      const sections = ["clarrie", "about", "skills", "projects", "testimonials", "contact"];
       const scrollPosition = window.scrollY + 100; // Offset for navbar
 
       let currentSection = "";
@@ -49,6 +49,12 @@ function Navigation() {
   const scrollToSection = (id: string) => {
     setIsOpen(false);
     
+    // Special handling for Clarrie - navigate to chat page
+    if (id === 'clarrie') {
+      window.location.href = '/chat';
+      return;
+    }
+    
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -68,6 +74,7 @@ function Navigation() {
   };
 
   const navItems = [
+    { name: "Clarrie AI", id: "clarrie" },
     { name: "About", id: "about" },
     { name: "Skills", id: "skills" },
     { name: "Projects", id: "projects" },
@@ -93,8 +100,10 @@ function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="text-xl font-bold text-white">Portfolio.</div>
+          {/* Logo - Clean Wordmark */}
+          <div className="text-xl font-bold text-white">
+            Clarity Inc<span className="text-[#6699FF]">.</span>
+          </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">

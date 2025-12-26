@@ -9,19 +9,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name - Software Engineer Portfolio",
+  title: "Clarity Inc.",
   description: "Building digital experiences with clean code and modern tech",
   keywords: ["software engineer", "web developer", "react", "next.js"],
   authors: [{ name: "Your Name" }],
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
   openGraph: {
-    title: "Your Name - Software Engineer",
+    title: "Clarity Inc.",
     description: "Building digital experiences with clean code and modern tech",
     type: "website",
     images: ["/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Name - Software Engineer",
+    title: "Clarity Inc.",
     description: "Building digital experiences with clean code and modern tech",
   },
 };

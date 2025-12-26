@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import TechCube from "./TechCube";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Bot } from "lucide-react";
+import Link from "next/link";
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -23,81 +24,127 @@ const Hero = () => {
     });
   };
 
+  const scrollToClarrie = () => {
+    document.getElementById("clarrie")?.scrollIntoView({ 
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-background pt-16 relative overflow-hidden">
-      {/* Enhanced Animated Background */}
+    <section className="min-h-screen flex items-center justify-center bg-background pt-16 relative overflow-hidden border-b-2 border-gray-800/50">
+      {/* Enhanced Animated Background - Intense Glows */}
       <motion.div style={{ y, opacity }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 md:left-20 w-48 md:w-72 h-48 md:h-72 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 md:bottom-20 md:right-20 w-64 md:w-96 h-64 md:h-96 bg-accent/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-48 md:h-64 bg-[#00D4FF]/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+        {/* Larger, brighter glowing orbs */}
+        <div className="absolute top-10 left-0 md:left-10 w-72 md:w-[500px] h-72 md:h-[500px] bg-accent/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 md:right-10 w-80 md:w-[600px] h-80 md:h-[600px] bg-secondary/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
+        <div className="absolute top-1/3 left-1/3 w-64 md:w-96 h-64 md:h-96 bg-tertiary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '3s' }}></div>
+        
+        {/* Additional intense glow layers */}
+        <div className="absolute top-1/2 right-1/4 w-48 md:w-72 h-48 md:h-72 bg-accent/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '5s' }}></div>
+        <div className="absolute bottom-1/3 left-1/4 w-56 md:w-80 h-56 md:h-80 bg-secondary/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '3.5s' }}></div>
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Content - FIXED MOBILE ALIGNMENT */}
+          {/* Left Content - REDESIGNED FOR IMPACT */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full order-2 md:order-1" // Ensure content comes first on mobile
+            className="w-full order-2 md:order-1"
           >
-            {/* Company Name with Subtle Animation */}
+            {/* Eyebrow Text - Attention Grabber */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-6"
+              transition={{ delay: 0.1 }}
+              className="mb-4"
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
-                Clarity<span className="text-accent">.</span>
-              </h1>
-              <p className="text-base md:text-lg text-gray-400">Software Engineering Studio</p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full">
+                <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                <span className="text-accent text-sm md:text-base font-semibold">AI-Powered Development Studio</span>
+              </div>
             </motion.div>
-            
-            {/* Main Headline with NEW COLOR */}
-            <motion.h2
-              className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-[#00D4FF] to-[#00ffab] bg-clip-text text-transparent leading-tight"
+
+            {/* Massive Impact Headline */}
+            <motion.h1
+              className="text-4xl md:text-7xl font-black text-white mb-6 leading-[1.1]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3 }}
             >
-              We Engineer Software for You
-            </motion.h2>
+              Build Software That{" "}
+              <span className="bg-gradient-to-r from-accent via-tertiary to-secondary bg-clip-text text-transparent">
+                Actually Ships
+              </span>
+            </motion.h1>
 
-            {/* Subtitle */}
+            {/* Value Proposition */}
             <motion.p
-              className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed"
+              className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              We turn complex ideas into production-ready applications.{" "}
+              <span className="text-white font-medium">Fast. Scalable. Reliable.</span>
+            </motion.p>
+
+            {/* Social Proof Pills */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-4 mb-8"
             >
-              Building <span className="text-accent font-semibold">digital experiences</span> with clean code and modern technology
-            </motion.p>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>GPT-4 Powered</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Enterprise Ready</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>24/7 Support</span>
+              </div>
+            </motion.div>
 
-            {/* CTA Buttons - Better mobile layout */}
+            {/* Reimagined CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
+              <Link href="/chat" className="w-full sm:w-auto">
+                <motion.div
+                  className="group relative bg-gradient-to-r from-accent to-secondary text-white px-8 py-4 md:px-10 md:py-5 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  <Bot className="w-6 h-6 relative z-10" />
+                  <span className="relative z-10">Meet Clarrie AI</span>
+                </motion.div>
+              </Link>
+
               <motion.button
                 onClick={scrollToProjects}
-                className="bg-accent text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold hover:bg-accent/90 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/25 w-full sm:w-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group border-2 border-gray-700 hover:border-accent text-white px-8 py-4 md:px-10 md:py-5 rounded-xl font-bold text-lg hover:bg-accent/5 transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                View Our Work
-                <ArrowDown className="group-hover:translate-y-1 transition-transform" size={20} />
-              </motion.button>
-              
-              <motion.button
-                onClick={scrollToAbout}
-                className="border border-gray-600 text-gray-300 px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold hover:border-accent hover:text-accent transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Learn More
+                <span>See Our Work</span>
+                <ArrowDown className="group-hover:translate-y-1 transition-transform w-5 h-5" />
               </motion.button>
             </motion.div>
           </motion.div>

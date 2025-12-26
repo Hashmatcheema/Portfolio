@@ -1,0 +1,27 @@
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cube Icon -->
+  <g transform="translate(20, 20)">
+    <!-- 3D Cube in isometric view -->
+    <!-- Top face -->
+    <path d="M -8 -6 L 0 -10 L 8 -6 L 0 -2 Z" fill="#58a6ff" stroke="#58a6ff" stroke-width="0.5"/>
+    
+    <!-- Left face -->
+    <path d="M -8 -6 L -8 6 L 0 10 L 0 -2 Z" fill="#1f6feb" stroke="#1f6feb" stroke-width="0.5"/>
+    
+    <!-- Right face -->
+    <path d="M 8 -6 L 8 6 L 0 10 L 0 -2 Z" fill="#388bfd" stroke="#388bfd" stroke-width="0.5"/>
+    
+    <!-- Subtle edge highlights for depth -->
+    <path d="M 0 -10 L 0 -2" stroke="#79c0ff" stroke-width="0.5" opacity="0.6"/>
+    <path d="M -8 -6 L 0 -2" stroke="#79c0ff" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 8 -6 L 0 -2" stroke="#79c0ff" stroke-width="0.5" opacity="0.4"/>
+  </g>
+  
+  <!-- Wordmark "Clarity Inc." -->
+  <text x="50" y="27" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="white">
+    Clarity Inc<tspan fill="#6699FF">.</tspan>
+  </text>
+</svg>
+
+
+

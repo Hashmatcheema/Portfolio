@@ -48,49 +48,70 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-surface">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
+    <section id="skills" className="py-32 bg-elevated relative overflow-hidden border-b border-gray-800/30">
+      {/* Minimal Elevated - Subtle Depth Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Diagonal gradient overlay for subtle depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-surface/40 via-elevated to-surface/40 opacity-80"></div>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(rgba(88, 166, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(88, 166, 255, 0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}></div>
+        {/* Top and bottom accent lines */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/15 to-transparent"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white mb-16 text-center"
+          className="text-center mb-16"
         >
-          Skills & Technologies
-        </motion.h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Skills & <span className="text-accent">Technologies</span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Modern tech stack powering enterprise-grade applications
+          </p>
+        </motion.div>
 
         {skillCategories.map((category, categoryIndex) => (
           <motion.div
             key={category.title}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
             viewport={{ once: true }}
             className="mb-16 last:mb-0"
           >
-            <h3 className="text-2xl font-semibold text-accent mb-8">
-              {category.title}
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="flex items-center gap-3 mb-8">
+              <h3 className="text-2xl font-bold text-white">{category.title}</h3>
+              <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent"></div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {category.skills.map((skill, skillIndex) => {
                 const IconComponent = skill.icon;
                 return (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: skillIndex * 0.05 }}
                     viewport={{ once: true }}
-                    whileHover={{ y: -8, scale: 1.05 }}
-                    className="bg-background p-6 rounded-xl text-center border border-gray-800 hover:border-accent transition-all cursor-pointer group"
+                    whileHover={{ y: -5, scale: 1.05 }}
+                    className="bg-background border-2 border-gray-800 hover:border-accent/50 p-6 rounded-xl text-center group transition-all shadow-md hover:shadow-xl hover:shadow-accent/5"
                   >
                     <IconComponent
-                      className="mx-auto mb-3 transition-colors"
-                      size={48}
+                      className="mx-auto mb-3 group-hover:scale-110 transition-transform"
+                      size={40}
                       style={{ color: skill.color }}
                     />
-                    <p className="text-white font-medium group-hover:text-accent transition-colors">
+                    <p className="text-gray-300 font-semibold text-sm group-hover:text-white transition-colors">
                       {skill.name}
                     </p>
                   </motion.div>
