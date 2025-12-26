@@ -31,12 +31,12 @@ const SimpleTechCube = () => {
   }, []);
 
   const faces = [
-    { text: 'REACT', transform: 'translateZ(100px)' },
-    { text: 'NEXT.JS', transform: 'rotateY(180deg) translateZ(100px)' },
-    { text: 'NODE', transform: 'rotateY(90deg) translateZ(100px)' },
-    { text: 'PYTHON', transform: 'rotateY(-90deg) translateZ(100px)' },
-    { text: 'TS', transform: 'rotateX(90deg) translateZ(100px)' },
-    { text: 'MONGO', transform: 'rotateX(-90deg) translateZ(100px)' },
+    { text: 'REACT', transform: 'translateZ(100px)', bgColor: '#58a6ff', borderColor: '#79c0ff' },
+    { text: 'NEXT.JS', transform: 'rotateY(180deg) translateZ(100px)', bgColor: '#3fb950', borderColor: '#56d364' },
+    { text: 'NODE', transform: 'rotateY(90deg) translateZ(100px)', bgColor: '#79c0ff', borderColor: '#a5d6ff' },
+    { text: 'PYTHON', transform: 'rotateY(-90deg) translateZ(100px)', bgColor: '#58a6ff', borderColor: '#79c0ff' },
+    { text: 'TS', transform: 'rotateX(90deg) translateZ(100px)', bgColor: '#3fb950', borderColor: '#56d364' },
+    { text: 'MONGO', transform: 'rotateX(-90deg) translateZ(100px)', bgColor: '#79c0ff', borderColor: '#a5d6ff' },
   ];
 
   return (
@@ -48,8 +48,15 @@ const SimpleTechCube = () => {
         {faces.map((face, index) => (
           <div
             key={index}
-            className="absolute w-full h-full bg-[#ec4e39]/80 border-2 border-[#ec4e39] flex items-center justify-center text-white text-lg font-bold rounded-lg"
-            style={{ transform: face.transform }}
+            className="absolute w-full h-full flex items-center justify-center text-white text-lg font-bold rounded-lg backdrop-blur-sm"
+            style={{ 
+              transform: face.transform,
+              backgroundColor: `${face.bgColor}CC`,  // 80% opacity
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: face.borderColor,
+              boxShadow: `0 0 20px ${face.bgColor}40, inset 0 0 20px ${face.bgColor}20`
+            }}
           >
             {face.text}
           </div>
